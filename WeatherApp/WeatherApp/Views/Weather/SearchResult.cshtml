@@ -1,5 +1,11 @@
-﻿@model WeatherApp.Models.testViewModel
+﻿@model WeatherApp.Models.ApiResultViewModel;
 
 
 <h1>you can get to result</h1>
-<h3>Test String: @Model.testString</h3>
+
+<h1>Weather in @Model.name</h1>
+<ul>
+    <li>Temp: @Model.main.temp</li>
+    <li>Cloud Cover Percentage: @Model.clouds.all %</li>
+    <li>Icon: <img height="200" width="200" src="@Model.iconUrl"/></li>
+</ul>
