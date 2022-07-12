@@ -1,0 +1,8 @@
+﻿@model WeatherApp.Models.IndexViewModel
+
+<h1>YOU CAN GET TO SEARCH</h1>
+<form asp-controller="weather" asp-action="searchresult">
+    <label>Enter a Test String Here</label>
+    <input type="text" asp-for="searchTerm" placeholder="enter test string here" />
+    <input type="submit" />
+</form>
