@@ -24,6 +24,8 @@ namespace WeatherApp.Models
         public float cod { get; set; }
         public string iconUrl { get; set; }
         public string windDirection { get; set; }
+        public string countryCode { get; set; }
+        public ForecastApiResultModel forecast { get; set; }
 
     }
 }
