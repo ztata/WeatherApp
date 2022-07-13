@@ -23,6 +23,7 @@ namespace WeatherApp.Models
         public string name { get; set; }
         public float cod { get; set; }
         public string iconUrl { get; set; }
+        public string windDirection { get; set; }
 
     }
 }

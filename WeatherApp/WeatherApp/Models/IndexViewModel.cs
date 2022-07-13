@@ -8,5 +8,6 @@ namespace WeatherApp.Models
     public class IndexViewModel
     {
         public string searchTerm { get; set; }
+        public string welcomeMessage { get; set; }
     }
 }
