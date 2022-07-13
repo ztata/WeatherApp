@@ -6,8 +6,8 @@ using WeatherApp.Models.GeocodingApiModels;
 
 namespace WeatherApp.Models
 {
-    public class GeocodingApiResultModel
+    public class GeocodingApiResultModel : List<City>
     {
-        public List<City> cities { get; set; }
+       // public List<City> cities { get; set; }
     }
 }

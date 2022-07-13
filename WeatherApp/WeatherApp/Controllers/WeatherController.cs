@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WeatherApp.Models;
 using Flurl.Http;
-
+using WeatherApp.Models.GeocodingApiModels;
 
 namespace WeatherApp.Controllers
 {
@@ -52,9 +52,9 @@ namespace WeatherApp.Controllers
             var geocodingApiTask = geocodingApiUri.GetJsonAsync<GeocodingApiResultModel>();
             geocodingApiTask.Wait();
 
-            float lat = geocodingApiTask.Result.cities.First().lat;
-            float lon = geocodingApiTask.Result.cities.First().lon;
-            result.countryCode = geocodingApiTask.Result.cities.First().country;
+            float lat = geocodingApiTask.Result.First().lat;
+            float lon = geocodingApiTask.Result.First().lon;
+            result.countryCode = geocodingApiTask.Result.First().country;
 
             //call current weather api to get current weather conditions and save to current weather view model 
             string currentWeatherApiUri = $"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={apiKey}&units=imperial";
@@ -75,6 +75,7 @@ namespace WeatherApp.Controllers
             result.iconUrl = $"http://openweathermap.org/img/w/{currentWeatherApiTask.Result.weather.First().icon}.png";
 
             //call forecast api to get forecast data and save to current weather view model 
+            //ADD A TRY CATCH THAT WILL TAKE YOU TO THE ERROR VIEW IN THE EVENT OF AN INVALID SEARCH TERM 
             string forecastApiUri = $"https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={apiKey}&units=imperial";
             var forecastApiTask = forecastApiUri.GetJsonAsync<ForecastApiResultModel>();
             forecastApiTask.Wait();
@@ -148,6 +149,10 @@ namespace WeatherApp.Controllers
             }
 
             result.iconUrl = $"http://openweathermap.org/img/w/{result.weather.First().icon}.png";
+            foreach (var item in result.forecast.list)
+            {
+                item.iconUrl = $"http://openweathermap.org/img/w/{item.weather.First().icon}.png";
+            }
             return View(result);
 
 

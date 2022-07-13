@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WeatherApp.Models.ForecastApiModels
 {
-    public class City
+    public class ForecastCity
     {
         public int id { get; set; }
         public string name { get; set; }

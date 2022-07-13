@@ -1,7 +1,7 @@
 ﻿@model WeatherApp.Models.ApiResultViewModel;
 
 <br />
-<h1 class="text-center mt-4 text-light">Current Weather in @Model.name</h1>
+<h1 class="text-center mt-4 text-light">Current Weather in @Model.name, @Model.countryCode</h1>
 <br />
 
 @*INITIAL WEATHER INFORMATION*@
@@ -49,11 +49,36 @@
     </div>
 </div>
 
-@*ADD THE 3 DAY FORECAST IN A STYLED TABLE HERE*@ 
-@*THIS IS GOING TO REQUIRE CREATING A NEW MODEL THAT HAS THE FORECAST INCLUDED AND SENDING NEW MODEL FROM ACTION AND BINDING NEW MODEL TO THIS VIEW*@ 
-@*ADD A TRY TO CATCH TO THE SEARCH METHOD TO GO TO THE ERROR PAGE IF THEY ENTER AN INVALID SEARCH TERM*@ 
-@*BUILD IN THEIR GEOCODING API TO MAKE THE CALLS MORE ACCURATE. ADD THEIR API KEY TO APPSETTINGS.JSON*@
+
+@*WEATHER FORECAST*@
 <h2 class="text-center mt-4 text-light">Three Day Forecast</h2>
 <div>
-
+    <div class="row justify-content-center">
+        <div class="col align-self-center">
+            <table class="table table-hover bg-light text-center">
+                <thead>
+                    <tr>
+                        <th>Date and Time</th>
+                        <th>Condition</th>
+                        <th>Temperature (F)</th>
+                        <th>Feels Like (F)</th>
+                        <th>Pressure (hPa)</th>
+                        <th>Cloud Cover (%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.forecast.list)
+                    {
+                        <tr>
+                            <td>@item.dt_txt</td>
+                            <td><img height="50" width="50" src="@item.iconUrl" /></td>
+                            <td>@item.main.temp</td>
+                            <td>@item.main.feels_like</td>
+                            <td>@item.main.pressure</td>
+                            <td>@item.clouds.all</td>
+                        </tr>
+                    }
+            </table>
+         </div>
+    </div>
 </div>

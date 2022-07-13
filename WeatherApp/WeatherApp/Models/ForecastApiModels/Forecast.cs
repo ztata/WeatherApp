@@ -15,5 +15,6 @@ namespace WeatherApp.Models.ForecastApiModels
         public Wind wind { get; set; }
         public int visibility { get; set; }
         public string dt_txt { get; set; }
+        public string iconUrl { get; set; }
     }
 }
